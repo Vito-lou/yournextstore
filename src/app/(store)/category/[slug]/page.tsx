@@ -14,7 +14,7 @@ export const generateMetadata = async (props: {
 		first: 100,
 		filter: { category: params.slug },
 	});
-
+	console.log("product", products);
 	if (products.length === 0) {
 		return notFound();
 	}
@@ -26,7 +26,10 @@ export const generateMetadata = async (props: {
 		alternates: { canonical: `${publicUrl}/category/${params.slug}` },
 	};
 };
-
+// the slug is the category name which was filled in the stripe product metadata
+// eg: when you create a product, you need to add at least two metadata:
+// category: "category name like apparel"
+// slug: "subcategory name like wedding-dress"
 export default async function CategoryPage(props: {
 	params: Promise<{ slug: string }>;
 }) {
